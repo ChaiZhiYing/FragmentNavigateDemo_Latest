@@ -20,7 +20,7 @@ class QuestionFragment : Fragment() {
 
     private val questions: MutableList<Question> = mutableListOf(
         Question(
-            text = "What is mco stand for ?",
+            text = "what is mco stand for ?",
             answers = listOf(
                 "Movement Control Order",
                 "Multiple Choice Order",
@@ -46,10 +46,7 @@ class QuestionFragment : Fragment() {
         binding.optA.text = answers[0]
         binding.optB.text = answers[1]
         binding.optC.text = answers[2]
-
     }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -81,7 +78,10 @@ class QuestionFragment : Fragment() {
                     setQuestion()
 
                 } else {
-                    Navigation.findNavController(it).navigate(R.id.action_questionFragment2_to_thankYouFragment2)
+                    // todo:: navigate to thankyou fragment
+                    val percentage : Float = (score /2.0F) * 100
+                    val action= QuestionFragmentDirections.actionQuestionFragment2ToThankYouFragment2(percentage)
+                    Navigation.findNavController(it).navigate(action)
                 }
             }else{
                 Toast.makeText(context, "please select answer", Toast.LENGTH_LONG).show()
@@ -89,5 +89,4 @@ class QuestionFragment : Fragment() {
         }
         return binding.root
     }
-
 }
